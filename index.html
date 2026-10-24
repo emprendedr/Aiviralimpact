@@ -4,17 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Distribuye Inteligencia Artificial</title>
-<!-- Importamos una fuente moderna y gruesa similar a la de la imagen -->
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,700;0,800;1,800&display=swap" rel="stylesheet">
+<!-- Fuente Montserrat para igualar el grosor y estilo de la captura -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,600;0,700;0,800;1,800&display=swap" rel="stylesheet">
 <style>
   :root {
-    /* Colores extraídos de la imagen */
-    --bg-top: #e8dbff;
-    --bg-bottom: #fce4f4;
-    --text-dark: #1a0f2e;
-    --text-gray: #6b5b7b;
-    --gradient-start: #8a2be2; /* Morado */
-    --gradient-end: #ff1493;   /* Rosa */
+    /* Colores extraídos directamente de tu captura */
+    --bg-top: #e8dbff;      /* Lila claro superior */
+    --bg-bottom: #fce4f4;   /* Rosa claro inferior */
+    --text-dark: #1a0f2e;   /* Negro/morado oscuro del título */
+    --text-gray: #6b5b7b;   /* Gris de los párrafos */
+    --gradient-start: #8a2be2; /* Morado del botón/borde */
+    --gradient-end: #ff1493;   /* Rosa del botón/borde */
     --white: #ffffff;
   }
 
@@ -26,53 +26,55 @@
 
   body {
     font-family: 'Montserrat', sans-serif;
-    /* Degradado de fondo de arriba a abajo */
     background: linear-gradient(180deg, var(--bg-top) 0%, var(--bg-bottom) 100%);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     color: var(--text-dark);
+    /* Centrado en pantallas grandes para que no se estire demasiado */
+    padding: 0 16px;
   }
 
-  /* Barra superior simulando la app */
+  /* Barra superior idéntica a la de la captura (solo visible en móvil) */
   .top-bar {
     width: 100%;
-    padding: 15px 20px;
+    max-width: 480px;
+    padding: 16px 8px;
     display: flex;
     align-items: center;
-    background: rgba(255, 255, 255, 0.4);
-    backdrop-filter: blur(10px);
     font-weight: 700;
     font-size: 0.9rem;
     color: var(--text-dark);
+    margin-bottom: 10px;
   }
 
   .top-bar span {
-    margin-left: 10px;
-    opacity: 0.7;
+    margin-left: 8px;
+    opacity: 0.6;
+    font-weight: 600;
   }
 
-  /* Contenedor principal (Mobile first) */
+  /* Contenedor principal */
   .main-container {
-    max-width: 500px;
+    max-width: 480px;
     width: 100%;
-    padding: 40px 24px;
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-bottom: 50px;
   }
 
   h1 {
-    font-size: clamp(2.2rem, 7vw, 3rem);
+    font-size: clamp(2.1rem, 7vw, 2.8rem);
     font-weight: 800;
-    line-height: 1.1;
-    margin-bottom: 24px;
+    line-height: 1.15;
+    margin-bottom: 20px;
     letter-spacing: -0.5px;
   }
 
-  /* Efecto degradado para la palabra "distribuir" */
+  /* Palabra "distribuir" con degradado y cursiva */
   .highlight {
     font-style: italic;
     background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
@@ -80,14 +82,15 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
     display: inline-block;
+    font-weight: 800;
   }
 
   .subtitle {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     color: var(--text-gray);
-    font-weight: 500;
+    font-weight: 600;
     line-height: 1.5;
-    margin-bottom: 40px;
+    margin-bottom: 35px;
     max-width: 400px;
   }
 
@@ -96,18 +99,19 @@
     color: var(--text-gray);
   }
 
-  /* Espacio para el video con borde degradado */
+  /* Marco del video con borde degradado exacto */
   .video-wrapper {
     width: 100%;
     background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-    padding: 4px; /* Grosor del borde */
+    padding: 4px;
     border-radius: 24px;
     margin-bottom: 16px;
+    box-shadow: 0 8px 20px rgba(138, 43, 226, 0.15);
   }
 
   .video-inner {
     width: 100%;
-    aspect-ratio: 16 / 9; /* Proporción del video */
+    aspect-ratio: 16 / 9;
     background-color: var(--white);
     border-radius: 20px;
     display: flex;
@@ -115,19 +119,20 @@
     align-items: center;
     color: var(--text-gray);
     font-size: 0.9rem;
-    font-weight: 500;
+    font-weight: 600;
     text-align: center;
     padding: 20px;
-    /* Aquí puedes insertar un iframe si el video es de YouTube/Vimeo */
+    /* Aquí va tu <iframe> de YouTube o Vimeo */
   }
 
   .video-note {
     font-size: 0.9rem;
     color: var(--text-gray);
-    margin-bottom: 35px;
+    font-weight: 500;
+    margin-bottom: 30px;
   }
 
-  /* Botón de WhatsApp (Llamado a la acción) */
+  /* Botón de WhatsApp idéntico al de la captura */
   .cta-button {
     width: 100%;
     display: block;
@@ -137,7 +142,7 @@
     font-size: 1.1rem;
     font-weight: 700;
     padding: 20px 24px;
-    border-radius: 50px; /* Bordes totalmente redondos */
+    border-radius: 50px;
     box-shadow: 0 10px 20px rgba(255, 20, 147, 0.3);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
@@ -151,49 +156,47 @@
     transform: translateY(1px);
   }
 
-  /* Ajustes para pantallas grandes (Escritorio) */
+  /* Ocultar barra superior en escritorio */
   @media (min-width: 768px) {
+    .top-bar {
+      display: none;
+    }
     .main-container {
       padding-top: 60px;
-      padding-bottom: 60px;
-    }
-    .top-bar {
-      display: none; /* Ocultamos la barra superior en PC */
     }
   }
 </style>
 </head>
 <body>
 
-  <!-- Barra superior (solo se ve en móviles, como en tu captura) -->
+  <!-- Barra superior móvil -->
   <div class="top-bar">
     <b>Aivirallimpacto</b> <span>· Distribuye i...</span>
   </div>
 
   <main class="main-container">
     
-    <!-- Título Principal -->
+    <!-- Título principal idéntico -->
     <h1>
       El futuro de los negocios digitales está en <span class="highlight">distribuir</span> inteligencia artificial.
     </h1>
 
-    <!-- Subtítulo -->
+    <!-- Subtítulo idéntico -->
     <p class="subtitle">
       Un sistema para construir un negocio con <strong>ingresos recurrentes y alcance internacional.</strong>
     </p>
 
-    <!-- Espacio reservado para el video -->
+    <!-- Espacio para video (puedes pegar tu iframe aquí) -->
     <div class="video-wrapper">
       <div class="video-inner">
-        <!-- Aquí puedes poner tu <iframe> de YouTube o Vimeo -->
         🎬 Espacio para el video
       </div>
     </div>
 
-    <!-- Texto debajo del video -->
+    <!-- Nota debajo del video -->
     <p class="video-note">Mira el video completo antes de continuar.</p>
 
-    <!-- Botón de WhatsApp (Cambiado a "Quiero ver más") -->
+    <!-- Botón "Quiero ver más" enlazado a tu WhatsApp -->
     <a href="https://wa.me/573232850508?text=Hola%2C%20quiero%20ver%20m%C3%A1s" 
        target="_blank" 
        rel="noopener noreferrer" 
