@@ -3,240 +3,205 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Prospección | [Tu Empresa]</title>
+<title>Distribuye Inteligencia Artificial</title>
+<!-- Importamos una fuente moderna y gruesa similar a la de la imagen -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,700;0,800;1,800&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --primary:#1a56db;
-    --primary-dark:#1e429f;
-    --dark:#111827;
-    --gray:#6b7280;
-    --light:#f9fafb;
-    --radius:12px;
-  }
-  *{margin:0;padding:0;box-sizing:border-box;}
-  body{
-    font-family:'Segoe UI',system-ui,-apple-system,sans-serif;
-    color:var(--dark);
-    background:var(--light);
-    line-height:1.6;
-  }
-  .container{max-width:1100px;margin:0 auto;padding:0 20px;}
-
-  /* HEADER */
-  header{
-    background:#fff;
-    border-bottom:1px solid #e5e7eb;
-    padding:18px 0;
-    position:sticky;top:0;z-index:100;
-  }
-  .header-inner{display:flex;justify-content:space-between;align-items:center;}
-  .logo{font-weight:800;font-size:1.4rem;color:var(--primary);}
-  .header-cta{
-    background:var(--primary);color:#fff;padding:10px 22px;
-    border-radius:var(--radius);text-decoration:none;font-weight:600;
-    transition:background .2s;
-  }
-  .header-cta:hover{background:var(--primary-dark);}
-
-  /* HERO */
-  .hero{
-    padding:80px 0 60px;
-    text-align:center;
-    background:linear-gradient(180deg,#eef2ff 0%,var(--light) 100%);
-  }
-  .hero h1{
-    font-size:clamp(2rem,5vw,3.2rem);
-    font-weight:800;
-    max-width:820px;
-    margin:0 auto 20px;
-    line-height:1.2;
-  }
-  .hero h1 span{color:var(--primary);}
-  .hero p{
-    font-size:1.15rem;
-    color:var(--gray);
-    max-width:620px;
-    margin:0 auto 36px;
-  }
-  .hero-form{
-    display:flex;gap:12px;max-width:520px;margin:0 auto;flex-wrap:wrap;
-    justify-content:center;
-  }
-  .hero-form input{
-    flex:1 1 260px;padding:14px 18px;border:1px solid #d1d5db;
-    border-radius:var(--radius);font-size:1rem;outline:none;
-  }
-  .hero-form input:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(26,86,219,.15);}
-  .hero-form button{
-    background:var(--primary);color:#fff;border:none;padding:14px 32px;
-    border-radius:var(--radius);font-size:1rem;font-weight:700;cursor:pointer;
-    transition:background .2s;
-  }
-  .hero-form button:hover{background:var(--primary-dark);}
-  .hero-note{font-size:.85rem;color:var(--gray);margin-top:14px;}
-
-  /* BENEFICIOS */
-  .benefits{padding:70px 0;}
-  .section-title{
-    text-align:center;font-size:1.9rem;font-weight:800;margin-bottom:50px;
-  }
-  .benefits-grid{
-    display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-    gap:28px;
-  }
-  .benefit-card{
-    background:#fff;padding:32px 26px;border-radius:var(--radius);
-    box-shadow:0 4px 18px rgba(0,0,0,.05);text-align:center;
-  }
-  .benefit-icon{
-    width:52px;height:52px;background:#e0e7ff;border-radius:50%;
-    display:flex;align-items:center;justify-content:center;
-    margin:0 auto 18px;font-size:1.5rem;
-  }
-  .benefit-card h3{font-size:1.15rem;margin-bottom:10px;}
-  .benefit-card p{color:var(--gray);font-size:.95rem;}
-
-  /* PRUEBA SOCIAL */
-  .social-proof{
-    background:#fff;padding:60px 0;border-top:1px solid #e5e7eb;
-  }
-  .testimonials{
-    display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-    gap:24px;
-  }
-  .testimonial{
-    background:var(--light);padding:28px;border-radius:var(--radius);
-    border-left:4px solid var(--primary);
-  }
-  .testimonial p{font-style:italic;margin-bottom:16px;color:#374151;}
-  .testimonial strong{display:block;font-size:.95rem;}
-  .testimonial span{font-size:.85rem;color:var(--gray);}
-
-  /* FORMULARIO FINAL */
-  .final-cta{
-    padding:80px 0;text-align:center;
-    background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 100%);
-    color:#fff;
-  }
-  .final-cta h2{font-size:2rem;margin-bottom:16px;}
-  .final-cta p{opacity:.9;margin-bottom:34px;max-width:560px;margin-left:auto;margin-right:auto;}
-  .final-form{
-    display:flex;gap:12px;max-width:520px;margin:0 auto;flex-wrap:wrap;
-    justify-content:center;
-  }
-  .final-form input{
-    flex:1 1 200px;padding:14px 18px;border:none;border-radius:var(--radius);
-    font-size:1rem;outline:none;
-  }
-  .final-form button{
-    background:var(--dark);color:#fff;border:none;padding:14px 32px;
-    border-radius:var(--radius);font-weight:700;cursor:pointer;font-size:1rem;
-  }
-  .final-form button:hover{background:#000;}
-
-  /* FOOTER */
-  footer{
-    background:var(--dark);color:#9ca3af;padding:30px 0;text-align:center;
-    font-size:.85rem;
+  :root {
+    /* Colores extraídos de la imagen */
+    --bg-top: #e8dbff;
+    --bg-bottom: #fce4f4;
+    --text-dark: #1a0f2e;
+    --text-gray: #6b5b7b;
+    --gradient-start: #8a2be2; /* Morado */
+    --gradient-end: #ff1493;   /* Rosa */
+    --white: #ffffff;
   }
 
-  /* RESPONSIVE */
-  @media(max-width:600px){
-    .hero{padding:50px 0 40px;}
-    .header-cta{padding:8px 16px;font-size:.9rem;}
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    /* Degradado de fondo de arriba a abajo */
+    background: linear-gradient(180deg, var(--bg-top) 0%, var(--bg-bottom) 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--text-dark);
+  }
+
+  /* Barra superior simulando la app */
+  .top-bar {
+    width: 100%;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(10px);
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--text-dark);
+  }
+
+  .top-bar span {
+    margin-left: 10px;
+    opacity: 0.7;
+  }
+
+  /* Contenedor principal (Mobile first) */
+  .main-container {
+    max-width: 500px;
+    width: 100%;
+    padding: 40px 24px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  h1 {
+    font-size: clamp(2.2rem, 7vw, 3rem);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 24px;
+    letter-spacing: -0.5px;
+  }
+
+  /* Efecto degradado para la palabra "distribuir" */
+  .highlight {
+    font-style: italic;
+    background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: inline-block;
+  }
+
+  .subtitle {
+    font-size: 1.1rem;
+    color: var(--text-gray);
+    font-weight: 500;
+    line-height: 1.5;
+    margin-bottom: 40px;
+    max-width: 400px;
+  }
+
+  .subtitle strong {
+    font-weight: 800;
+    color: var(--text-gray);
+  }
+
+  /* Espacio para el video con borde degradado */
+  .video-wrapper {
+    width: 100%;
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    padding: 4px; /* Grosor del borde */
+    border-radius: 24px;
+    margin-bottom: 16px;
+  }
+
+  .video-inner {
+    width: 100%;
+    aspect-ratio: 16 / 9; /* Proporción del video */
+    background-color: var(--white);
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-gray);
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-align: center;
+    padding: 20px;
+    /* Aquí puedes insertar un iframe si el video es de YouTube/Vimeo */
+  }
+
+  .video-note {
+    font-size: 0.9rem;
+    color: var(--text-gray);
+    margin-bottom: 35px;
+  }
+
+  /* Botón de WhatsApp (Llamado a la acción) */
+  .cta-button {
+    width: 100%;
+    display: block;
+    background: linear-gradient(90deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+    color: var(--white);
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 700;
+    padding: 20px 24px;
+    border-radius: 50px; /* Bordes totalmente redondos */
+    box-shadow: 0 10px 20px rgba(255, 20, 147, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 25px rgba(255, 20, 147, 0.4);
+  }
+
+  .cta-button:active {
+    transform: translateY(1px);
+  }
+
+  /* Ajustes para pantallas grandes (Escritorio) */
+  @media (min-width: 768px) {
+    .main-container {
+      padding-top: 60px;
+      padding-bottom: 60px;
+    }
+    .top-bar {
+      display: none; /* Ocultamos la barra superior en PC */
+    }
   }
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
-<header>
-  <div class="container header-inner">
-    <div class="logo">[Tu Empresa]</div>
-    <a href="#contacto" class="header-cta">Solicitar información</a>
+  <!-- Barra superior (solo se ve en móviles, como en tu captura) -->
+  <div class="top-bar">
+    <b>Aivirallimpacto</b> <span>· Distribuye i...</span>
   </div>
-</header>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="container">
-    <h1>Consigue más clientes con <span>[tu solución]</span></h1>
-    <p>Ayudamos a empresas como la tuya a [beneficio principal] mediante [metodología o producto]. Sin compromiso y con resultados medibles.</p>
-    <form class="hero-form" action="#" method="POST">
-      <input type="email" name="email" placeholder="Tu correo electrónico" required>
-      <button type="submit">Quiero empezar</button>
-    </form>
-    <p class="hero-note">🔒 Sin spam. Solo información relevante.</p>
-  </div>
-</section>
+  <main class="main-container">
+    
+    <!-- Título Principal -->
+    <h1>
+      El futuro de los negocios digitales está en <span class="highlight">distribuir</span> inteligencia artificial.
+    </h1>
 
-<!-- BENEFICIOS -->
-<section class="benefits">
-  <div class="container">
-    <h2 class="section-title">¿Por qué elegirnos?</h2>
-    <div class="benefits-grid">
-      <div class="benefit-card">
-        <div class="benefit-icon">🚀</div>
-        <h3>Resultados rápidos</h3>
-        <p>Implementación en menos de 30 días y primeras métricas positivas desde la primera semana.</p>
-      </div>
-      <div class="benefit-card">
-        <div class="benefit-icon">🎯</div>
-        <h3>Enfoque personalizado</h3>
-        <p>Analizamos tu caso y diseñamos una estrategia a medida, no plantillas genéricas.</p>
-      </div>
-      <div class="benefit-card">
-        <div class="benefit-icon">📈</div>
-        <h3>ROI garantizado</h3>
-        <p>Trabajamos con objetivos claros y medibles. Si no ves resultados, seguimos trabajando sin coste extra.</p>
+    <!-- Subtítulo -->
+    <p class="subtitle">
+      Un sistema para construir un negocio con <strong>ingresos recurrentes y alcance internacional.</strong>
+    </p>
+
+    <!-- Espacio reservado para el video -->
+    <div class="video-wrapper">
+      <div class="video-inner">
+        <!-- Aquí puedes poner tu <iframe> de YouTube o Vimeo -->
+        🎬 Espacio para el video
       </div>
     </div>
-  </div>
-</section>
 
-<!-- PRUEBA SOCIAL -->
-<section class="social-proof">
-  <div class="container">
-    <h2 class="section-title">Lo que dicen nuestros clientes</h2>
-    <div class="testimonials">
-      <div class="testimonial">
-        <p>“En solo dos meses duplicamos las oportunidades de venta. El equipo es cercano y muy profesional.”</p>
-        <strong>Laura Gómez</strong>
-        <span>Directora Comercial · [Empresa A]</span>
-      </div>
-      <div class="testimonial">
-        <p>“La prospección nunca había sido tan sencilla. Ahora tenemos un flujo constante de leads cualificados.”</p>
-        <strong>Carlos Ruiz</strong>
-        <span>CEO · [Empresa B]</span>
-      </div>
-      <div class="testimonial">
-        <p>“Destacan por su transparencia y por los resultados tangibles. Sin duda, repetiremos.”</p>
-        <strong>Marta López</strong>
-        <span>Marketing Manager · [Empresa C]</span>
-      </div>
-    </div>
-  </div>
-</section>
+    <!-- Texto debajo del video -->
+    <p class="video-note">Mira el video completo antes de continuar.</p>
 
-<!-- FORMULARIO FINAL -->
-<section class="final-cta" id="contacto">
-  <div class="container">
-    <h2>¿Hablamos?</h2>
-    <p>Déjanos tus datos y te contactamos en menos de 24 horas para analizar tu caso sin compromiso.</p>
-    <form class="final-form" action="#" method="POST">
-      <input type="text" name="nombre" placeholder="Tu nombre" required>
-      <input type="email" name="email" placeholder="Tu correo" required>
-      <button type="submit">Enviar</button>
-    </form>
-  </div>
-</section>
+    <!-- Botón de WhatsApp (Cambiado a "Quiero ver más") -->
+    <a href="https://wa.me/573232850508?text=Hola%2C%20quiero%20ver%20m%C3%A1s" 
+       target="_blank" 
+       rel="noopener noreferrer" 
+       class="cta-button">
+       Quiero ver más
+    </a>
 
-<!-- FOOTER -->
-<footer>
-  <div class="container">
-    © 2026 [Tu Empresa]. Todos los derechos reservados. · <a href="#" style="color:#9ca3af;">Política de privacidad</a>
-  </div>
-</footer>
+  </main>
 
 </body>
 </html>
