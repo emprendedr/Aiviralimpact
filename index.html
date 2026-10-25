@@ -48,7 +48,7 @@ p.l{color:var(--mut);max-width:620px}
 .step p{color:var(--mut);font-size:.9rem}
 .car{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:10px 4px 20px;margin-top:26px}
 .car .frame{flex:0 0 min(260px,78%);margin:0;scroll-snap-align:center}
-.car .frame>div{aspect-ratio:3/4;text-align:center;color:var(--mut);font-size:.85rem;padding:0;} /* Padding modificado para imágenes */
+.car .frame>div{aspect-ratio:3/4;text-align:center;color:var(--mut);font-size:.85rem;padding:0;}
 .car b{display:block;color:var(--tx)}
 .note{font-size:.78rem;color:var(--mut);margin-top:6px}
 .list{list-style:none;margin-top:22px;display:grid;gap:12px}
@@ -73,14 +73,14 @@ footer{text-align:center;padding:30px 20px 50px;color:var(--mut);font-size:.8rem
 <div class="orb o1"></div><div class="orb o2"></div>
 
 <section class="hero">
-  <!-- 1. AQUÍ VA TU LOGO (Cambia la ruta por la de tu imagen) -->
-  <div class="logo"><img src="AQUI_VA_LA_URL_DE_TU_LOGO.png" alt="AiviralImpacto"></div>
+  <!-- Imagen al principio actualizada -->
+  <div class="logo"><img src="https://raw.githubusercontent.com/emprendedr/Aiviralimpact/main/133574A4-5F20-49AF-85F4-686F1825EA4F.png" alt="AiviralImpacto"></div>
   
   <h1>El futuro de los negocios digitales está en <em>distribuir</em> inteligencia artificial.</h1>
   <p class="l" style="margin:18px auto 0">Un sistema para construir un negocio con <b>ingresos recurrentes y alcance internacional.</b></p>
   
-  <!-- 2. AQUÍ VA TU VIDEO (Pega el enlace de tu video de YouTube, Vimeo o Streamable) -->
-  <div class="frame"><div><iframe src="AQUI_VA_LA_URL_DE_TU_VIDEO" allow="fullscreen; autoplay" allowfullscreen title="Presentación"></iframe></div></div>
+  <!-- Video actualizado de Streamable -->
+  <div class="frame"><div><iframe src="https://streamable.com/e/jvxopj" allow="fullscreen; autoplay" allowfullscreen title="Presentación"></iframe></div></div>
   
   <p class="note">Mira el video completo antes de continuar.</p>
   <p style="margin-top:22px"><button class="btn" data-open>Quiero ver más</button></p>
@@ -124,12 +124,11 @@ footer{text-align:center;padding:30px 20px 50px;color:var(--mut);font-size:.8rem
   <span class="tag">Resultados del equipo</span>
   <h2>Resultados de <em>algunos miembros.</em></h2>
   
-  <!-- 3. AQUÍ VAN TUS IMÁGENES DE TESTIMONIOS (Cambia las rutas por las de tus capturas) -->
+  <!-- Imagen de Testimonio actualizada -->
   <div class="car">
-    <div class="frame"><div><img src="AQUI_VA_LA_IMAGEN_1.jpg" alt="Testimonio 1"></div></div>
-    <div class="frame"><div><img src="AQUI_VA_LA_IMAGEN_2.jpg" alt="Testimonio 2"></div></div>
-    <div class="frame"><div><img src="AQUI_VA_LA_IMAGEN_3.jpg" alt="Testimonio 3"></div></div>
-    <div class="frame"><div><img src="AQUI_VA_LA_IMAGEN_4.jpg" alt="Testimonio 4"></div></div>
+    <div class="frame">
+      <div><img src="https://raw.githubusercontent.com/emprendedr/Aiviralimpact/main/2E5E679A-D153-49D4-AAB1-EAA12979950E.png" alt="Testimonio de miembro"></div>
+    </div>
   </div>
   <p class="note">ⓘ Los resultados corresponden a experiencias individuales y varían según la dedicación de cada persona. Usa solo testimonios reales y verificables.</p>
 </section>
@@ -177,18 +176,26 @@ footer{text-align:center;padding:30px 20px 50px;color:var(--mut);font-size:.8rem
 
 <dialog id="m">
   <button class="x" id="cl" aria-label="Cerrar">×</button>
-  <h3>Recibe la presentación <em>completa</em></h3>
+  <h3>Recibe el <em>video completo</em></h3>
   <p class="note" style="margin-bottom:10px">⏳ Cupos limitados: asegura tu bono de 48 horas.</p>
   <input id="nm" placeholder="Nombre" autocomplete="name">
   <input id="ph" placeholder="📲 Tu WhatsApp (con código de país)" inputmode="tel" autocomplete="tel">
-  <label>🔒 Tus datos solo se usan para enviarte la presentación.</label>
+  <label>🔒 Tus datos solo se usan para enviarte el video completo.</label>
   <button class="btn" id="go" style="width:100%">🔥 Quiero ver más</button>
 </dialog>
 
 <script>
-// 4. AQUÍ ESTÁ TU NÚMERO DE WHATSAPP CONFIGURADO (Código de país 57 + tu número)
+// WhatsApp actualizado con código de país de Colombia (57)
 var WA="573232850508"; 
-var items=["Academia","Agentes de IA","Creative Hub","Segundo cerebro","Automatizaciones","Aplicaciones SaaS","Imagen · video · voz","Redes sociales"];
+
+// Textos animados reemplazados
+var items=[
+  "Aprende a crear tu marca personal", 
+  "A usar la íA correctamente", 
+  "Automatizar ingresos", 
+  "Clases en vivo de redes sociales, íA y automatización"
+];
+
 var h=items.map(function(t){return"<span>"+t+"</span>"}).join("");
 document.getElementById("mq").innerHTML=h+h+h+h;
 var io=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add("on");x.target.querySelectorAll(".cnt").forEach(c=>{var n=+c.dataset.n,i=0,t=setInterval(function(){i+=Math.ceil(n/40);if(i>=n){i=n;clearInterval(t)}c.textContent=i},30)});io.unobserve(x.target)}})},{threshold:.15});
@@ -199,7 +206,8 @@ document.getElementById("cl").onclick=function(){m.close()};
 document.getElementById("go").onclick=function(){
   var n=document.getElementById("nm").value.trim(),p=document.getElementById("ph").value.replace(/\D/g,"");
   if(!n||p.length<8){alert("Escribe tu nombre y un WhatsApp válido.");return}
-  var t=encodeURIComponent("🔥 Hola, soy "+n+" ("+p+"). Quiero aprovechar el BONO ESPECIAL de 48 horas y entrar como pionero antes de que se cierren los cupos. ¿Qué paso sigue? ¡Estoy listo para empezar HOY!");
+  // Mensaje de WhatsApp actualizado pidiendo el video completo
+  var t=encodeURIComponent("🔥 Hola, soy "+n+" ("+p+"). Quiero que me envíen el VIDEO COMPLETO de la presentación y aprovechar el bono especial. ¿Qué paso sigue?");
   window.open("https://wa.me/"+WA+"?text="+t,"_blank");m.close();
 };
 </script>
