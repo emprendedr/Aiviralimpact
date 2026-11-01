@@ -47,7 +47,7 @@ p.l{color:var(--mut);max-width:620px}
 .step:before{counter-increment:s;content:counter(s);flex:none;width:42px;height:42px;border-radius:50%;background:var(--g);display:grid;place-items:center;font-weight:800;color:#fff}
 .step p{color:var(--mut);font-size:.9rem}
 
-/* --- ESTILOS MEJORADOS DEL CARRUSEL --- */
+/* --- CORRECCIÓN DEL CARRUSEL --- */
 .car{
   display:flex;
   gap:16px;
@@ -56,15 +56,14 @@ p.l{color:var(--mut);max-width:620px}
   padding:10px 4px 20px;
   margin-top:26px;
   scroll-behavior:smooth;
-  /* Ocultar barra de scroll para que se vea más limpio */
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
 .car::-webkit-scrollbar { display: none; }
 
 .car .frame{
-  flex:0 0 85%; /* Ocupa casi todo el ancho en móvil */
-  max-width: 340px;
+  flex:0 0 92%; /* Se ajustó para ocupar más ancho en celular */
+  max-width: 600px; /* Se aumentó el ancho máximo para pantallas grandes */
   margin:0;
   scroll-snap-align:center;
   opacity:0;
@@ -74,18 +73,18 @@ p.l{color:var(--mut);max-width:620px}
 .rv.on .car .frame{opacity:1;transform:translateX(0)}
 
 .car .frame>div{
-  height: 480px; /* Altura fija para uniformidad */
+  aspect-ratio: auto; /* Elimina la proporción forzada */
+  height: auto;       /* Permite que la altura fluya natural */
   padding:0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background: #000; /* Fondo negro por si la imagen no llena el marco */
+  background: transparent; /* Quita el fondo negro */
+  display:block;
 }
 .car .frame img{
   width:100%;
-  height:100%;
-  object-fit: contain; /* MAGIA: Muestra la imagen completa sin recortar */
+  height:auto;      /* La imagen recupera su altura natural */
+  object-fit: contain; /* Muestra el 100% del contenido */
   border-radius: 18px;
+  display: block;
 }
 
 .note{font-size:.78rem;color:var(--mut);margin-top:6px}
@@ -231,7 +230,6 @@ footer{text-align:center;padding:30px 20px 50px;color:var(--mut);font-size:.8rem
 </dialog>
 
 <script>
-// WhatsApp
 var WA="13232850508"; 
 
 var items=["Aprende a crear tu marca personal","A usar la íA correctamente","Automatizar ingresos","Clases en vivo de redes sociales, íA y automatización"];
@@ -241,7 +239,6 @@ document.getElementById("mq").innerHTML=h+h+h+h;
 var io=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add("on");x.target.querySelectorAll(".cnt").forEach(c=>{var n=+c.dataset.n,i=0,t=setInterval(function(){i+=Math.ceil(n/40);if(i>=n){i=n;clearInterval(t)}c.textContent=i},30)});io.unobserve(x.target)}})},{threshold:.15});
 document.querySelectorAll(".rv").forEach(function(e){io.observe(e)});
 
-// Animación de entrada de imágenes una por una
 var carFrames = document.querySelectorAll(".car .frame");
 var delay = 0;
 carFrames.forEach(function(frame) {
@@ -249,39 +246,28 @@ carFrames.forEach(function(frame) {
     delay += 0.15;
 });
 
-// --- NUEVO: LÓGICA DE AUTO-DESLIZAMIENTO ---
 const carousel = document.getElementById('testimonial-carousel');
 let isHovered = false;
-let autoSlideInterval;
 
-// Pausar el auto-deslizamiento cuando el usuario interactúa
 carousel.addEventListener('mouseenter', () => isHovered = true);
 carousel.addEventListener('mouseleave', () => isHovered = false);
 carousel.addEventListener('touchstart', () => isHovered = true);
 carousel.addEventListener('touchend', () => isHovered = false);
 
-function startAutoSlide() {
-    autoSlideInterval = setInterval(() => {
-        if (isHovered) return; // Si el usuario está mirando, no mover
+setInterval(() => {
+    if (isHovered) return;
 
-        const maxScrollLeft = carousel.scrollWidth - carousel.clientWidth;
-        
-        // Si llegamos al final, volvemos al principio suavemente
-        if (carousel.scrollLeft >= maxScrollLeft - 10) {
-            carousel.scrollTo({ left: 0, behavior: 'smooth' });
-        } else {
-            // Calcular cuánto medir la siguiente imagen
-            const frameWidth = carousel.querySelector('.frame').offsetWidth;
-            const gap = 16; // El gap definido en CSS
-            carousel.scrollBy({ left: frameWidth + gap, behavior: 'smooth' });
-        }
-    }, 3000); // Cambia de imagen cada 3 segundos
-}
+    const maxScrollLeft = carousel.scrollWidth - carousel.clientWidth;
+    
+    if (carousel.scrollLeft >= maxScrollLeft - 10) {
+        carousel.scrollTo({ left: 0, behavior: 'smooth' });
+    } else {
+        const frameWidth = carousel.querySelector('.frame').offsetWidth;
+        const gap = 16; 
+        carousel.scrollBy({ left: frameWidth + gap, behavior: 'smooth' });
+    }
+}, 3000); 
 
-// Iniciar el carrusel
-startAutoSlide();
-
-// Lógica del Modal
 var m=document.getElementById("m");
 document.querySelectorAll("[data-open]").forEach(function(b){b.onclick=function(){m.showModal()}});
 document.getElementById("cl").onclick=function(){m.close()};
