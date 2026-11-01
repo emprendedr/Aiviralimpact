@@ -46,10 +46,14 @@ p.l{color:var(--mut);max-width:620px}
 .step{display:flex;gap:16px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px}
 .step:before{counter-increment:s;content:counter(s);flex:none;width:42px;height:42px;border-radius:50%;background:var(--g);display:grid;place-items:center;font-weight:800;color:#fff}
 .step p{color:var(--mut);font-size:.9rem}
+
+/* CARRUSEL Y ANIMACIÓN DE IMÁGENES */
 .car{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:10px 4px 20px;margin-top:26px}
-.car .frame{flex:0 0 min(260px,78%);margin:0;scroll-snap-align:center}
-.car .frame>div{aspect-ratio:3/4;text-align:center;color:var(--mut);font-size:.85rem;padding:0;}
-.car b{display:block;color:var(--tx)}
+.car .frame{flex:0 0 min(260px,78%);margin:0;scroll-snap-align:center;opacity:0;transform:translateX(60px);transition:opacity 0.6s ease-out,transform 0.6s ease-out}
+.rv.on .car .frame{opacity:1;transform:translateX(0)}
+.car .frame>div{aspect-ratio:3/4;padding:0}
+.car .frame img{width:100%;height:100%;object-fit:cover}
+
 .note{font-size:.78rem;color:var(--mut);margin-top:6px}
 .list{list-style:none;margin-top:22px;display:grid;gap:12px}
 .list li{padding-left:34px;position:relative}.list li:before{content:"✓";position:absolute;left:0;width:24px;height:24px;border-radius:50%;background:var(--g);color:#fff;display:grid;place-items:center;font-size:.8rem}
@@ -73,13 +77,13 @@ footer{text-align:center;padding:30px 20px 50px;color:var(--mut);font-size:.8rem
 <div class="orb o1"></div><div class="orb o2"></div>
 
 <section class="hero">
-  <!-- Imagen al principio actualizada -->
+  <!-- Imagen al principio -->
   <div class="logo"><img src="https://raw.githubusercontent.com/emprendedr/Aiviralimpact/main/133574A4-5F20-49AF-85F4-686F1825EA4F.png" alt="AiviralImpacto"></div>
   
   <h1>El futuro de los negocios digitales está en <em>distribuir</em> inteligencia artificial.</h1>
   <p class="l" style="margin:18px auto 0">Un sistema para construir un negocio con <b>ingresos recurrentes y alcance internacional.</b></p>
   
-  <!-- Video actualizado de Streamable -->
+  <!-- Video de Streamable -->
   <div class="frame"><div><iframe src="https://streamable.com/e/jvxopj" allow="fullscreen; autoplay" allowfullscreen title="Presentación"></iframe></div></div>
   
   <p class="note">Mira el video completo antes de continuar.</p>
@@ -121,14 +125,25 @@ footer{text-align:center;padding:30px 20px 50px;color:var(--mut);font-size:.8rem
 </section>
 
 <section class="rv">
-  <span class="tag">Resultados del equipo</span>
-  <h2>Resultados de <em>algunos miembros.</em></h2>
+  <span class="tag">Testimonios</span>
+  <!-- Título actualizado -->
+  <h2>Lo que dicen algunos miembros de la <em>comunidad.</em></h2>
   
-  <!-- Imagen de Testimonio actualizada -->
+  <!-- Carrusel con las 13 imágenes nuevas -->
   <div class="car">
-    <div class="frame">
-      <div><img src="https://raw.githubusercontent.com/emprendedr/Aiviralimpact/main/2E5E679A-D153-49D4-AAB1-EAA12979950E.png" alt="Testimonio de miembro"></div>
-    </div>
+    <div class="frame"><div><img src="https://raw.githubusercontent.com/emprendedr/Aiviralimpact/main/FDF19727-F2CE-4C38-B18E-4E154FFE1726.png" alt="Testimonio 1" loading="lazy"></div></div>
+    <div class="frame"><div><img src="https://raw.githubusercontent.com/emprendedr/Aiviralimpact/main/FCAE6D50-EA40-4C87-9E39-DC64750946E8.png" alt="Testimonio 2" loading="lazy"></div></div>
+    <div class="frame"><div><img src="https://raw.githubusercontent.com/emprendedr/Aiviralimpact/main/E3AD70DA-8253-403B-82D4-8696DE5FB3BB.png" alt="Testimonio 3" loading="lazy"></div></div>
+    <div class="frame"><div><img src="https://raw.githubusercontent.com/emprendedr/Aiviralimpact/main/C0C7152A-787D-4D7E-BC56-4F22C3B83483.png" alt="Testimonio 4" loading="lazy"></div></div>
+    <div class="frame"><div><img src="https://raw.githubusercontent.com/emprendedr/Aiviralimpact/main/B820FF37-573B-47CB-A66A-3C6E7954463C.png" alt="Testimonio 5" loading="lazy"></div></div>
+    <div class="frame"><div><img src="https://raw.githubusercontent.com/emprendedr/Aiviralimpact/main/735EAA08-0E03-46F3-A667-B8DE5F08BBE1.png" alt="Testimonio 6" loading="lazy"></div></div>
+    <div class="frame"><div><img src="https://raw.githubusercontent.com/emprendedr/Aiviralimpact/main/85C05B85-8C5D-47A8-ADF3-E24E8D5A2FC3.png" alt="Testimonio 7" loading="lazy"></div></div>
+    <div class="frame"><div><img src="https://raw.githubusercontent.com/emprendedr/Aiviralimpact/main/5A9087E9-0B69-4E87-A3A0-2DCACB0B3A1F.png" alt="Testimonio 8" loading="lazy"></div></div>
+    <div class="frame"><div><img src="https://raw.githubusercontent.com/emprendedr/Aiviralimpact/main/55423162-651E-49DB-BF92-BFEA4A24354A.png" alt="Testimonio 9" loading="lazy"></div></div>
+    <div class="frame"><div><img src="https://raw.githubusercontent.com/emprendedr/Aiviralimpact/main/530F1424-C5C7-4487-AF3A-037D8015B6AF.png" alt="Testimonio 10" loading="lazy"></div></div>
+    <div class="frame"><div><img src="https://raw.githubusercontent.com/emprendedr/Aiviralimpact/main/0FC6B4AE-62A6-4DD0-9633-51D67A5DBF4E.png" alt="Testimonio 11" loading="lazy"></div></div>
+    <div class="frame"><div><img src="https://raw.githubusercontent.com/emprendedr/Aiviralimpact/main/021EECB8-0ABE-46CB-BB7A-430615EE2636.png" alt="Testimonio 12" loading="lazy"></div></div>
+    <div class="frame"><div><img src="https://raw.githubusercontent.com/emprendedr/Aiviralimpact/main/615CC679-583A-4164-AA67-A0C27B415BF1.png" alt="Testimonio 13" loading="lazy"></div></div>
   </div>
   <p class="note">ⓘ Los resultados corresponden a experiencias individuales y varían según la dedicación de cada persona. Usa solo testimonios reales y verificables.</p>
 </section>
@@ -176,19 +191,19 @@ footer{text-align:center;padding:30px 20px 50px;color:var(--mut);font-size:.8rem
 
 <dialog id="m">
   <button class="x" id="cl" aria-label="Cerrar">×</button>
-  <h3>Recibe el <em>video completo</em></h3>
+  <h3>Recibe la <em>información completa</em></h3>
   <p class="note" style="margin-bottom:10px">⏳ Cupos limitados: asegura tu bono de 48 horas.</p>
   <input id="nm" placeholder="Nombre" autocomplete="name">
   <input id="ph" placeholder="📲 Tu WhatsApp (con código de país)" inputmode="tel" autocomplete="tel">
-  <label>🔒 Tus datos solo se usan para enviarte el video completo.</label>
+  <label>🔒 Tus datos solo se usan para enviarte la información.</label>
   <button class="btn" id="go" style="width:100%">🔥 Quiero ver más</button>
 </dialog>
 
 <script>
-// WhatsApp actualizado con código de país de Colombia (57)
-var WA="573232850508"; 
+// WhatsApp actualizado con el nuevo número (+1 323 285 0508)
+var WA="13232850508"; 
 
-// Textos animados reemplazados
+// Textos animados (marquesina)
 var items=[
   "Aprende a crear tu marca personal", 
   "A usar la íA correctamente", 
@@ -198,16 +213,28 @@ var items=[
 
 var h=items.map(function(t){return"<span>"+t+"</span>"}).join("");
 document.getElementById("mq").innerHTML=h+h+h+h;
+
+// Animación de aparición (Reveal)
 var io=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add("on");x.target.querySelectorAll(".cnt").forEach(c=>{var n=+c.dataset.n,i=0,t=setInterval(function(){i+=Math.ceil(n/40);if(i>=n){i=n;clearInterval(t)}c.textContent=i},30)});io.unobserve(x.target)}})},{threshold:.15});
 document.querySelectorAll(".rv").forEach(function(e){io.observe(e)});
+
+// Retraso animación de imágenes (derecha a izquierda, una por una)
+var carFrames = document.querySelectorAll(".car .frame");
+var delay = 0;
+carFrames.forEach(function(frame) {
+    frame.style.transitionDelay = delay + "s";
+    delay += 0.15; // 0.15s de retraso entre cada imagen
+});
+
 var m=document.getElementById("m");
 document.querySelectorAll("[data-open]").forEach(function(b){b.onclick=function(){m.showModal()}});
 document.getElementById("cl").onclick=function(){m.close()};
 document.getElementById("go").onclick=function(){
   var n=document.getElementById("nm").value.trim(),p=document.getElementById("ph").value.replace(/\D/g,"");
   if(!n||p.length<8){alert("Escribe tu nombre y un WhatsApp válido.");return}
-  // Mensaje de WhatsApp actualizado pidiendo el video completo
-  var t=encodeURIComponent("🔥 Hola, soy "+n+" ("+p+"). Quiero que me envíen el VIDEO COMPLETO de la presentación y aprovechar el bono especial. ¿Qué paso sigue?");
+  
+  // Mensaje de WhatsApp actualizado
+  var t=encodeURIComponent("🔥 Hola, soy "+n+" ("+p+"). Quiero recibir la información completa sobre la IA, las redes y cómo automatizar ingresos.");
   window.open("https://wa.me/"+WA+"?text="+t,"_blank");m.close();
 };
 </script>
