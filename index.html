@@ -47,12 +47,46 @@ p.l{color:var(--mut);max-width:620px}
 .step:before{counter-increment:s;content:counter(s);flex:none;width:42px;height:42px;border-radius:50%;background:var(--g);display:grid;place-items:center;font-weight:800;color:#fff}
 .step p{color:var(--mut);font-size:.9rem}
 
-/* CARRUSEL Y ANIMACIÓN DE IMÁGENES */
-.car{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:10px 4px 20px;margin-top:26px}
-.car .frame{flex:0 0 min(260px,78%);margin:0;scroll-snap-align:center;opacity:0;transform:translateX(60px);transition:opacity 0.6s ease-out,transform 0.6s ease-out}
+/* --- ESTILOS MEJORADOS DEL CARRUSEL --- */
+.car{
+  display:flex;
+  gap:16px;
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
+  padding:10px 4px 20px;
+  margin-top:26px;
+  scroll-behavior:smooth;
+  /* Ocultar barra de scroll para que se vea más limpio */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.car::-webkit-scrollbar { display: none; }
+
+.car .frame{
+  flex:0 0 85%; /* Ocupa casi todo el ancho en móvil */
+  max-width: 340px;
+  margin:0;
+  scroll-snap-align:center;
+  opacity:0;
+  transform:translateX(60px);
+  transition:opacity 0.6s ease-out,transform 0.6s ease-out;
+}
 .rv.on .car .frame{opacity:1;transform:translateX(0)}
-.car .frame>div{aspect-ratio:3/4;padding:0}
-.car .frame img{width:100%;height:100%;object-fit:cover}
+
+.car .frame>div{
+  height: 480px; /* Altura fija para uniformidad */
+  padding:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background: #000; /* Fondo negro por si la imagen no llena el marco */
+}
+.car .frame img{
+  width:100%;
+  height:100%;
+  object-fit: contain; /* MAGIA: Muestra la imagen completa sin recortar */
+  border-radius: 18px;
+}
 
 .note{font-size:.78rem;color:var(--mut);margin-top:6px}
 .list{list-style:none;margin-top:22px;display:grid;gap:12px}
@@ -77,13 +111,11 @@ footer{text-align:center;padding:30px 20px 50px;color:var(--mut);font-size:.8rem
 <div class="orb o1"></div><div class="orb o2"></div>
 
 <section class="hero">
-  <!-- Imagen al principio -->
   <div class="logo"><img src="https://raw.githubusercontent.com/emprendedr/Aiviralimpact/main/133574A4-5F20-49AF-85F4-686F1825EA4F.png" alt="AiviralImpacto"></div>
   
   <h1>El futuro de los negocios digitales está en <em>distribuir</em> inteligencia artificial.</h1>
   <p class="l" style="margin:18px auto 0">Un sistema para construir un negocio con <b>ingresos recurrentes y alcance internacional.</b></p>
   
-  <!-- Video de Streamable -->
   <div class="frame"><div><iframe src="https://streamable.com/e/jvxopj" allow="fullscreen; autoplay" allowfullscreen title="Presentación"></iframe></div></div>
   
   <p class="note">Mira el video completo antes de continuar.</p>
@@ -126,11 +158,10 @@ footer{text-align:center;padding:30px 20px 50px;color:var(--mut);font-size:.8rem
 
 <section class="rv">
   <span class="tag">Testimonios</span>
-  <!-- Título actualizado -->
   <h2>Lo que dicen algunos miembros de la <em>comunidad.</em></h2>
   
-  <!-- Carrusel con las 13 imágenes nuevas -->
-  <div class="car">
+  <!-- Carrusel con Auto-Slide -->
+  <div class="car" id="testimonial-carousel">
     <div class="frame"><div><img src="https://raw.githubusercontent.com/emprendedr/Aiviralimpact/main/FDF19727-F2CE-4C38-B18E-4E154FFE1726.png" alt="Testimonio 1" loading="lazy"></div></div>
     <div class="frame"><div><img src="https://raw.githubusercontent.com/emprendedr/Aiviralimpact/main/FCAE6D50-EA40-4C87-9E39-DC64750946E8.png" alt="Testimonio 2" loading="lazy"></div></div>
     <div class="frame"><div><img src="https://raw.githubusercontent.com/emprendedr/Aiviralimpact/main/E3AD70DA-8253-403B-82D4-8696DE5FB3BB.png" alt="Testimonio 3" loading="lazy"></div></div>
@@ -200,40 +231,63 @@ footer{text-align:center;padding:30px 20px 50px;color:var(--mut);font-size:.8rem
 </dialog>
 
 <script>
-// WhatsApp actualizado con el nuevo número (+1 323 285 0508)
+// WhatsApp
 var WA="13232850508"; 
 
-// Textos animados (marquesina)
-var items=[
-  "Aprende a crear tu marca personal", 
-  "A usar la íA correctamente", 
-  "Automatizar ingresos", 
-  "Clases en vivo de redes sociales, íA y automatización"
-];
-
+var items=["Aprende a crear tu marca personal","A usar la íA correctamente","Automatizar ingresos","Clases en vivo de redes sociales, íA y automatización"];
 var h=items.map(function(t){return"<span>"+t+"</span>"}).join("");
 document.getElementById("mq").innerHTML=h+h+h+h;
 
-// Animación de aparición (Reveal)
 var io=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add("on");x.target.querySelectorAll(".cnt").forEach(c=>{var n=+c.dataset.n,i=0,t=setInterval(function(){i+=Math.ceil(n/40);if(i>=n){i=n;clearInterval(t)}c.textContent=i},30)});io.unobserve(x.target)}})},{threshold:.15});
 document.querySelectorAll(".rv").forEach(function(e){io.observe(e)});
 
-// Retraso animación de imágenes (derecha a izquierda, una por una)
+// Animación de entrada de imágenes una por una
 var carFrames = document.querySelectorAll(".car .frame");
 var delay = 0;
 carFrames.forEach(function(frame) {
     frame.style.transitionDelay = delay + "s";
-    delay += 0.15; // 0.15s de retraso entre cada imagen
+    delay += 0.15;
 });
 
+// --- NUEVO: LÓGICA DE AUTO-DESLIZAMIENTO ---
+const carousel = document.getElementById('testimonial-carousel');
+let isHovered = false;
+let autoSlideInterval;
+
+// Pausar el auto-deslizamiento cuando el usuario interactúa
+carousel.addEventListener('mouseenter', () => isHovered = true);
+carousel.addEventListener('mouseleave', () => isHovered = false);
+carousel.addEventListener('touchstart', () => isHovered = true);
+carousel.addEventListener('touchend', () => isHovered = false);
+
+function startAutoSlide() {
+    autoSlideInterval = setInterval(() => {
+        if (isHovered) return; // Si el usuario está mirando, no mover
+
+        const maxScrollLeft = carousel.scrollWidth - carousel.clientWidth;
+        
+        // Si llegamos al final, volvemos al principio suavemente
+        if (carousel.scrollLeft >= maxScrollLeft - 10) {
+            carousel.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+            // Calcular cuánto medir la siguiente imagen
+            const frameWidth = carousel.querySelector('.frame').offsetWidth;
+            const gap = 16; // El gap definido en CSS
+            carousel.scrollBy({ left: frameWidth + gap, behavior: 'smooth' });
+        }
+    }, 3000); // Cambia de imagen cada 3 segundos
+}
+
+// Iniciar el carrusel
+startAutoSlide();
+
+// Lógica del Modal
 var m=document.getElementById("m");
 document.querySelectorAll("[data-open]").forEach(function(b){b.onclick=function(){m.showModal()}});
 document.getElementById("cl").onclick=function(){m.close()};
 document.getElementById("go").onclick=function(){
   var n=document.getElementById("nm").value.trim(),p=document.getElementById("ph").value.replace(/\D/g,"");
   if(!n||p.length<8){alert("Escribe tu nombre y un WhatsApp válido.");return}
-  
-  // Mensaje de WhatsApp actualizado
   var t=encodeURIComponent("🔥 Hola, soy "+n+" ("+p+"). Quiero recibir la información completa sobre la IA, las redes y cómo automatizar ingresos.");
   window.open("https://wa.me/"+WA+"?text="+t,"_blank");m.close();
 };
