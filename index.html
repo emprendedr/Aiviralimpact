@@ -23,11 +23,21 @@ p.l{color:var(--mut);max-width:620px}
 .btn{display:inline-block;background:var(--g);color:#fff;border:0;border-radius:99px;padding:16px 28px;font:600 1rem Sora,sans-serif;cursor:pointer;text-decoration:none;box-shadow:0 8px 30px rgba(255,61,154,.35);animation:pulse 2.4s infinite;transition:transform .2s}
 .btn:hover{transform:translateY(-2px) scale(1.03)}
 @keyframes pulse{50%{box-shadow:0 8px 45px rgba(139,61,255,.65)}}
+
+/* --- IMAGEN PRINCIPAL --- */
 .hero{text-align:center;padding-top:56px}
-.logo{display:inline-flex;gap:8px;align-items:center;font-weight:800;letter-spacing:.1em;margin-bottom:28px}
-.logo img{width:min(280px,72vw);border-radius:20px;display:block;animation:fl2 5s ease-in-out infinite alternate}@keyframes fl2{to{transform:translateY(-6px)}}
-.logo i{width:30px;height:30px;border-radius:9px;background:var(--g);display:block;animation:spin 8s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
+.logo{display:flex;justify-content:center;width:100%;margin-bottom:28px}
+.logo img{
+  width: 90%;
+  max-width: 600px;
+  height: auto;
+  border-radius:20px;
+  display:block;
+  animation:fl2 5s ease-in-out infinite alternate;
+  object-fit: contain;
+}
+@keyframes fl2{to{transform:translateY(-6px)}}
+
 .frame{position:relative;border-radius:22px;padding:3px;background:var(--g);margin:32px auto 0;max-width:720px}
 .frame>div{background:var(--card);border-radius:20px;aspect-ratio:16/9;display:grid;place-items:center;overflow:hidden;position:relative}
 .frame iframe{width:100%;height:100%;border:0}.frame img,.frame video{width:100%;height:100%;object-fit:cover}
@@ -48,44 +58,12 @@ p.l{color:var(--mut);max-width:620px}
 .step p{color:var(--mut);font-size:.9rem}
 
 /* --- CARRUSEL --- */
-.car{
-  display:flex;
-  gap:16px;
-  overflow-x:auto;
-  scroll-snap-type:x mandatory;
-  padding:10px 4px 20px;
-  margin-top:26px;
-  scroll-behavior:smooth;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
+.car{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:10px 4px 20px;margin-top:26px;scroll-behavior:smooth;-ms-overflow-style: none;scrollbar-width: none;}
 .car::-webkit-scrollbar { display: none; }
-
-.car .frame{
-  flex:0 0 92%;
-  max-width: 600px;
-  margin:0;
-  scroll-snap-align:center;
-  opacity:0;
-  transform:translateX(60px);
-  transition:opacity 0.6s ease-out,transform 0.6s ease-out;
-}
+.car .frame{flex:0 0 92%;max-width: 600px;margin:0;scroll-snap-align:center;opacity:0;transform:translateX(60px);transition:opacity 0.6s ease-out,transform 0.6s ease-out;}
 .rv.on .car .frame{opacity:1;transform:translateX(0)}
-
-.car .frame>div{
-  aspect-ratio: auto;
-  height: auto;
-  padding:0;
-  background: transparent;
-  display:block;
-}
-.car .frame img{
-  width:100%;
-  height:auto;
-  object-fit: contain;
-  border-radius: 18px;
-  display: block;
-}
+.car .frame>div{aspect-ratio: auto;height: auto;padding:0;background: transparent;display:block;}
+.car .frame img{width:100%;height:auto;object-fit: contain;border-radius: 18px;display: block;}
 
 .note{font-size:.78rem;color:var(--mut);margin-top:6px}
 .list{list-style:none;margin-top:22px;display:grid;gap:12px}
@@ -115,8 +93,12 @@ footer{text-align:center;padding:30px 20px 50px;color:var(--mut);font-size:.8rem
   <h1>El futuro de los negocios digitales está en <em>distribuir</em> inteligencia artificial.</h1>
   <p class="l" style="margin:18px auto 0">Un sistema para construir un negocio con <b>ingresos recurrentes y alcance internacional.</b></p>
   
-  <!-- Video -->
-  <div class="frame"><div><iframe src="https://streamable.com/e/23jqzt" allow="fullscreen; autoplay" allowfullscreen title="Presentación"></iframe></div></div>
+  <!-- Video con ID y parámetro loop=0 para que NO se repita -->
+  <div class="frame">
+    <div>
+      <iframe id="videoStreamable" src="https://streamable.com/e/23jqzt?loop=0" allow="fullscreen; autoplay" allowfullscreen title="Presentación"></iframe>
+    </div>
+  </div>
   
   <p class="note">Mira el video completo antes de continuar.</p>
   <p style="margin-top:22px"><button class="btn" data-open>Quiero ver más</button></p>
@@ -219,16 +201,12 @@ footer{text-align:center;padding:30px 20px 50px;color:var(--mut);font-size:.8rem
 
 <footer>© 2026 AiviralImpacto · Los resultados varían según la dedicación de cada persona.</footer>
 
-<!-- VENTANA FLOTANTE (MODAL) ACTUALIZADA -->
 <dialog id="m">
   <button class="x" id="cl" aria-label="Cerrar">×</button>
   <h3>Recibe la <em>información completa</em></h3>
   <p class="note" style="margin-bottom:10px">⏳ Cupos limitados: asegura tu bono de 48 horas.</p>
-  
-  <!-- Cambio de campos: Nombre completo y Email -->
   <input id="nm" placeholder="Nombre completo" autocomplete="name">
   <input id="em" type="email" placeholder="✉️ Tu correo electrónico" autocomplete="email">
-  
   <label>🔒 Tus datos solo se usan para enviarte la información.</label>
   <button class="btn" id="go" style="width:100%">🔥 Quiero ver más</button>
 </dialog>
@@ -274,24 +252,62 @@ var m=document.getElementById("m");
 document.querySelectorAll("[data-open]").forEach(function(b){b.onclick=function(){m.showModal()}});
 document.getElementById("cl").onclick=function(){m.close()};
 
-// LÓGICA ACTUALIZADA PARA VALIDAR NOMBRE Y EMAIL
 document.getElementById("go").onclick=function(){
   var n = document.getElementById("nm").value.trim();
   var e = document.getElementById("em").value.trim();
-  
-  // Validación básica de correo electrónico
   var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  
   if(!n || !emailRegex.test(e)){
     alert("Por favor, escribe tu nombre completo y un correo electrónico válido.");
     return;
   }
-  
-  // Mensaje que te llegará a tu WhatsApp con los datos del prospecto
   var t = encodeURIComponent("🔥 Hola, soy " + n + ". Mi correo es " + e + ". Quiero recibir la información completa sobre la IA, las redes y cómo automatizar ingresos.");
   window.open("https://wa.me/"+WA+"?text="+t,"_blank");
   m.close();
 };
+
+// --- LÓGICA DE DETECCIÓN DE VIDEO Y REDIRECCIÓN ---
+/* 
+  INSTRUCCIÓN: Cambia el número 120 por la duración de tu video en segundos. 
+  Por ejemplo, si tu video dura 3 minutos, pon 180. 
+*/
+const DURACION_VIDEO_SEGUNDOS = 120; 
+
+const iframe = document.getElementById("videoStreamable");
+const triggerTime = (DURACION_VIDEO_SEGUNDOS - 2) * 1000; // 2 segundos antes en milisegundos
+let videoTimer;
+
+window.addEventListener("message", function(e) {
+    // Asegurarnos de que el mensaje viene del video de Streamable
+    if (e.source !== iframe.contentWindow) return;
+    
+    try {
+        var data = JSON.parse(e.data);
+        var method = data.method || data.event;
+
+        // Cuando el usuario le da PLAY
+        if (method === "play") {
+            clearTimeout(videoTimer);
+            // Iniciar el temporizador para abrir el modal 2 segundos antes
+            videoTimer = setTimeout(function() {
+                // Abre el modal de información
+                m.showModal();
+            }, triggerTime);
+        }
+
+        // Si el usuario pausa el video, detenemos el temporizador
+        if (method === "pause") {
+            clearTimeout(videoTimer);
+        }
+
+        // Como medida de seguridad, si el video termina antes de los 2 segundos por alguna razón, abrimos el modal
+        if (method === "ended") {
+            clearTimeout(videoTimer);
+            m.showModal();
+        }
+    } catch(err) {
+        // Ignorar errores de formato de mensajes
+    }
+});
 </script>
 </body>
 </html>
