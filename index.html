@@ -47,7 +47,7 @@ p.l{color:var(--mut);max-width:620px}
 .step:before{counter-increment:s;content:counter(s);flex:none;width:42px;height:42px;border-radius:50%;background:var(--g);display:grid;place-items:center;font-weight:800;color:#fff}
 .step p{color:var(--mut);font-size:.9rem}
 
-/* --- CORRECCIÓN DEL CARRUSEL --- */
+/* --- CARRUSEL --- */
 .car{
   display:flex;
   gap:16px;
@@ -62,8 +62,8 @@ p.l{color:var(--mut);max-width:620px}
 .car::-webkit-scrollbar { display: none; }
 
 .car .frame{
-  flex:0 0 92%; /* Se ajustó para ocupar más ancho en celular */
-  max-width: 600px; /* Se aumentó el ancho máximo para pantallas grandes */
+  flex:0 0 92%;
+  max-width: 600px;
   margin:0;
   scroll-snap-align:center;
   opacity:0;
@@ -73,16 +73,16 @@ p.l{color:var(--mut);max-width:620px}
 .rv.on .car .frame{opacity:1;transform:translateX(0)}
 
 .car .frame>div{
-  aspect-ratio: auto; /* Elimina la proporción forzada */
-  height: auto;       /* Permite que la altura fluya natural */
+  aspect-ratio: auto;
+  height: auto;
   padding:0;
-  background: transparent; /* Quita el fondo negro */
+  background: transparent;
   display:block;
 }
 .car .frame img{
   width:100%;
-  height:auto;      /* La imagen recupera su altura natural */
-  object-fit: contain; /* Muestra el 100% del contenido */
+  height:auto;
+  object-fit: contain;
   border-radius: 18px;
   display: block;
 }
@@ -115,7 +115,8 @@ footer{text-align:center;padding:30px 20px 50px;color:var(--mut);font-size:.8rem
   <h1>El futuro de los negocios digitales está en <em>distribuir</em> inteligencia artificial.</h1>
   <p class="l" style="margin:18px auto 0">Un sistema para construir un negocio con <b>ingresos recurrentes y alcance internacional.</b></p>
   
-  <div class="frame"><div><iframe src="https://streamable.com/e/jvxopj" allow="fullscreen; autoplay" allowfullscreen title="Presentación"></iframe></div></div>
+  <!-- Video -->
+  <div class="frame"><div><iframe src="https://streamable.com/e/23jqzt" allow="fullscreen; autoplay" allowfullscreen title="Presentación"></iframe></div></div>
   
   <p class="note">Mira el video completo antes de continuar.</p>
   <p style="margin-top:22px"><button class="btn" data-open>Quiero ver más</button></p>
@@ -159,7 +160,6 @@ footer{text-align:center;padding:30px 20px 50px;color:var(--mut);font-size:.8rem
   <span class="tag">Testimonios</span>
   <h2>Lo que dicen algunos miembros de la <em>comunidad.</em></h2>
   
-  <!-- Carrusel con Auto-Slide -->
   <div class="car" id="testimonial-carousel">
     <div class="frame"><div><img src="https://raw.githubusercontent.com/emprendedr/Aiviralimpact/main/FDF19727-F2CE-4C38-B18E-4E154FFE1726.png" alt="Testimonio 1" loading="lazy"></div></div>
     <div class="frame"><div><img src="https://raw.githubusercontent.com/emprendedr/Aiviralimpact/main/FCAE6D50-EA40-4C87-9E39-DC64750946E8.png" alt="Testimonio 2" loading="lazy"></div></div>
@@ -219,12 +219,16 @@ footer{text-align:center;padding:30px 20px 50px;color:var(--mut);font-size:.8rem
 
 <footer>© 2026 AiviralImpacto · Los resultados varían según la dedicación de cada persona.</footer>
 
+<!-- VENTANA FLOTANTE (MODAL) ACTUALIZADA -->
 <dialog id="m">
   <button class="x" id="cl" aria-label="Cerrar">×</button>
   <h3>Recibe la <em>información completa</em></h3>
   <p class="note" style="margin-bottom:10px">⏳ Cupos limitados: asegura tu bono de 48 horas.</p>
-  <input id="nm" placeholder="Nombre" autocomplete="name">
-  <input id="ph" placeholder="📲 Tu WhatsApp (con código de país)" inputmode="tel" autocomplete="tel">
+  
+  <!-- Cambio de campos: Nombre completo y Email -->
+  <input id="nm" placeholder="Nombre completo" autocomplete="name">
+  <input id="em" type="email" placeholder="✉️ Tu correo electrónico" autocomplete="email">
+  
   <label>🔒 Tus datos solo se usan para enviarte la información.</label>
   <button class="btn" id="go" style="width:100%">🔥 Quiero ver más</button>
 </dialog>
@@ -256,9 +260,7 @@ carousel.addEventListener('touchend', () => isHovered = false);
 
 setInterval(() => {
     if (isHovered) return;
-
     const maxScrollLeft = carousel.scrollWidth - carousel.clientWidth;
-    
     if (carousel.scrollLeft >= maxScrollLeft - 10) {
         carousel.scrollTo({ left: 0, behavior: 'smooth' });
     } else {
@@ -271,11 +273,24 @@ setInterval(() => {
 var m=document.getElementById("m");
 document.querySelectorAll("[data-open]").forEach(function(b){b.onclick=function(){m.showModal()}});
 document.getElementById("cl").onclick=function(){m.close()};
+
+// LÓGICA ACTUALIZADA PARA VALIDAR NOMBRE Y EMAIL
 document.getElementById("go").onclick=function(){
-  var n=document.getElementById("nm").value.trim(),p=document.getElementById("ph").value.replace(/\D/g,"");
-  if(!n||p.length<8){alert("Escribe tu nombre y un WhatsApp válido.");return}
-  var t=encodeURIComponent("🔥 Hola, soy "+n+" ("+p+"). Quiero recibir la información completa sobre la IA, las redes y cómo automatizar ingresos.");
-  window.open("https://wa.me/"+WA+"?text="+t,"_blank");m.close();
+  var n = document.getElementById("nm").value.trim();
+  var e = document.getElementById("em").value.trim();
+  
+  // Validación básica de correo electrónico
+  var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  
+  if(!n || !emailRegex.test(e)){
+    alert("Por favor, escribe tu nombre completo y un correo electrónico válido.");
+    return;
+  }
+  
+  // Mensaje que te llegará a tu WhatsApp con los datos del prospecto
+  var t = encodeURIComponent("🔥 Hola, soy " + n + ". Mi correo es " + e + ". Quiero recibir la información completa sobre la IA, las redes y cómo automatizar ingresos.");
+  window.open("https://wa.me/"+WA+"?text="+t,"_blank");
+  m.close();
 };
 </script>
 </body>
